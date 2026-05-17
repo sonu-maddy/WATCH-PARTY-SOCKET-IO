@@ -13,7 +13,10 @@ app.use(express.json());
 
 const server = http.createServer(app);
 const io = new Server(server, {
-  cors: { origin: '*', methods: ['GET', 'POST'] }
+  cors: { 
+     origin: `${process.env.CLIENT_URL || "http://localhost:5173"}`,
+     credentials: true
+  }
 });
 
 // Database Connection
