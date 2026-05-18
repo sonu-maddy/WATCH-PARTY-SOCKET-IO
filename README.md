@@ -191,16 +191,9 @@ npm install
 
 ---
 
-# 📸 Screenshots
 
-Add your screenshots here.
 
-```bash
-/assets/home.png
-/assets/room.png
-```
 
----
 
 # 🔐 Role Permissions
 
