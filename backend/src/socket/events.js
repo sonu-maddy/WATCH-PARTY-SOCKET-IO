@@ -64,6 +64,8 @@ function registerSocketEvents(io, socket) {
         participants: updatedRoom.participants,
       });
 
+      io.to(roomId).emit("participants_updated", updatedRoom.participants);
+
       // 2. NEW JOINER INDIVIDUAL SYNC
       socket.emit("sync_state", {
         videoId: room.state.videoId,
@@ -159,6 +161,11 @@ function registerSocketEvents(io, socket) {
           io.to(room.roomId).emit("user_left", {
             participants: room.participants,
           });
+
+          io.to(room.roomId).emit(
+  "participants_updated",
+  room.participants
+);
         }
       }
     }, 2000);

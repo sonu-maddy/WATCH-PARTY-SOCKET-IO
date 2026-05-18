@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { socket } from '../services/socket';
-import { roomStore } from '../store/roomStore';
+import  roomStore  from '../store/roomStore';
 import VideoPlayer from '../components/VideoPlayer';
 import ParticipantList from '../components/ParticipantList';
 import ChatBox from '../components/ChatBox'; // Import Chatbox
@@ -37,6 +37,10 @@ const Room = () => {
 
     socket.on('user_joined', (data) => setStoreData({ participants: data.participants || [] }));
     socket.on('user_left', (data) => setStoreData({ participants: data.participants || [] }));
+
+    socket.on('participants_updated', (participants) => {
+  setStoreData({ participants });
+});
     
     socket.on('role_assigned', (data) => {
       const myUserId = sessionStorage.getItem('userId');
@@ -66,6 +70,7 @@ const Room = () => {
       socket.off('user_left');
       socket.off('role_assigned');
       socket.off('participant_removed');
+      socket.off('participants_updated');
       socket.off('change_video');
       socket.off('kicked');
     };
