@@ -4,9 +4,9 @@ export const roomStore = create((set) => ({
   myRole: 'PARTICIPANT',
   myUserId: '',
   participants: [],
-  chat: [], // Added chat array
+  chat: [], 
   videoId: 'dQw4w9WgXcQ',
   isPlaying: false,
   setStoreData: (data) => set((state) => ({ ...state, ...data })),
-  addChatMessage: (msg) => set((state) => ({ chat: [...state.chat, msg] })) // Helper
+  addChatMessage: (msg) => set((state) => ({ chat: [...state.chat, msg] })) 
 }));

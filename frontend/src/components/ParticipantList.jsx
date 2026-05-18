@@ -12,7 +12,7 @@ const ParticipantList = ({ roomId }) => {
 
   const kickUser = (targetUserId, targetName) => {
     if (confirm(`Kya aap ${targetName} ko room se nikalna chahte hain?`)) {
-      // CRITICAL: Yahan bhi senderUserId bhejenge
+      
       socket.emit('remove_participant', { 
         roomId, 
         senderUserId: myUserId, 

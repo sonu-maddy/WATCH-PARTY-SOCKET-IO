@@ -40,7 +40,7 @@ const VideoPlayer = ({ roomId, videoId, isPlaying, role }) => {
     };
   }, [setStoreData]);
 
-  // Handle local user actions (Sirf Host/Moderator ke liye)
+  
   const handleLocalPlay = () => {
     if (!isAuthorized) return;
     setStoreData({ isPlaying: true });
@@ -53,7 +53,7 @@ const VideoPlayer = ({ roomId, videoId, isPlaying, role }) => {
     socket.emit('pause', { roomId });
   };
 
-  // CRITICAL FIX FOR SEEK: onSeek parameter me current time bhejta hai, use sahi se catch karo
+ 
   const handleLocalSeek = (seconds) => {
     if (!isAuthorized) return;
     console.log("Local user seeked to:", seconds);
@@ -66,21 +66,21 @@ const VideoPlayer = ({ roomId, videoId, isPlaying, role }) => {
         ref={playerRef}
         url={`https://www.youtube.com/watch?v=${videoId}`}
         playing={isPlaying}
-        controls={true} // FIXED: Sab ke liye hamesha true rakho taaki UI re-render ka glitch na aaye
+        controls={true} 
         width="100%"
         height="100%"
         onPlay={handleLocalPlay}
         onPause={handleLocalPause}
         onBuffer={() => console.log('Buffering...')}
-        onSeek={handleLocalSeek} // FIXED: Isme parameter direct second milte hain
+        onSeek={handleLocalSeek} 
         config={{
           youtube: {
-            playerVars: { autoplay: 0, rel: 0, disablekb: isAuthorized ? 0 : 1 } // Non-authorized ke liye keyboard shortcuts off
+            playerVars: { autoplay: 0, rel: 0, disablekb: isAuthorized ? 0 : 1 } 
           }
         }}
       />
       
-      {/* Overlay to block click/tap: JAISE HI MODERATOR BANEGA YEH LAYER गायब HO JAYEGI */}
+      
       {!isAuthorized && (
         <div 
           className="absolute inset-0 bg-transparent z-10 pointer-events-auto cursor-not-allowed" 

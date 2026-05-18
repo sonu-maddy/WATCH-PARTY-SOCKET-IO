@@ -29,7 +29,7 @@ const ChatBox = ({ roomId }) => {
     const username = sessionStorage.getItem('username');
     const userId = sessionStorage.getItem('userId');
 
-    // Yeh event bina kisi role check ke seedha server par jata hai
+  
     socket.emit('send_message', {
       roomId,
       text: msgInput.trim(),
@@ -63,7 +63,7 @@ const ChatBox = ({ roomId }) => {
         <div ref={chatEndRef} />
       </div>
 
-      {/* Input Field: Sabhi participants ke liye fully open hai */}
+     
       <form onSubmit={handleSendMessage} className="p-2 bg-slate-950 border-t border-slate-800 flex gap-1.5 shrink-0">
         <input 
           type="text"

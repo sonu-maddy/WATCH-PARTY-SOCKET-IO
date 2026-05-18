@@ -14,7 +14,7 @@ const Home = () => {
         if (!username) return alert('Enter username');
         const roomId = generateRoomId();
 
-        // sessionStorage use karenge taaki har tab ka ID alag rahe
+        
         const userId = 'user_' + Math.random().toString(36).substring(2, 9) + Date.now().toString(36);
 
         sessionStorage.setItem('username', username);

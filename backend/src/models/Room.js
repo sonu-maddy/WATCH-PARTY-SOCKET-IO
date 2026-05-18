@@ -7,7 +7,7 @@ const ParticipantSchema = new mongoose.Schema({
   role: { type: String, enum: ['HOST', 'MODERATOR', 'PARTICIPANT'], default: 'PARTICIPANT' }
 });
 
-// Chat message structure
+
 const MessageSchema = new mongoose.Schema({
   username: { type: String, required: true },
   userId: { type: String, required: true },
@@ -23,7 +23,7 @@ const RoomSchema = new mongoose.Schema({
     currentTime: { type: Number, default: 0 }
   },
   participants: [ParticipantSchema],
-  chat: [MessageSchema] // Chat storage added
+  chat: [MessageSchema] 
 }, { timestamps: true });
 
 module.exports = mongoose.model('Room', RoomSchema);

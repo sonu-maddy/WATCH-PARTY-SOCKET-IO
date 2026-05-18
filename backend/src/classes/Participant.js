@@ -3,7 +3,7 @@ class Participant {
     this.socketId = socketId;
     this.userId = userId;
     this.username = username;
-    this.role = role; // 'HOST', 'MODERATOR', 'PARTICIPANT'
+    this.role = role; 
   }
 }
 

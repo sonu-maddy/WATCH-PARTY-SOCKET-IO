@@ -4,8 +4,8 @@ import { socket } from '../services/socket';
 import  roomStore  from '../store/roomStore';
 import VideoPlayer from '../components/VideoPlayer';
 import ParticipantList from '../components/ParticipantList';
-import ChatBox from '../components/ChatBox'; // Import Chatbox
-import Navbar from '../components/Navbar';   // Import Navbar
+import ChatBox from '../components/ChatBox'; 
+import Navbar from '../components/Navbar';   
 
 const Room = () => {
   const { roomId } = useParams();
@@ -27,7 +27,7 @@ const Room = () => {
     socket.on('sync_state', (data) => {
       setStoreData({
         participants: data.participants || [],
-        chat: data.chat || [], // Sync chat log
+        chat: data.chat || [], 
         videoId: data.videoId,
         isPlaying: data.isPlaying,
         myRole: data.myRole,
@@ -45,10 +45,10 @@ const Room = () => {
     socket.on('role_assigned', (data) => {
       const myUserId = sessionStorage.getItem('userId');
       
-      // Pure room ki participants list update karo
+      
       setStoreData({ participants: data.participants || [] });
 
-      // CRITICAL: Agar Vinit ka role badla hai, toh uske browser me 'myRole' state update karo instantly
+    
       const meUpdated = data.participants.find(p => p.userId === myUserId);
       if (meUpdated) {
         setStoreData({ myRole: meUpdated.role });
@@ -92,13 +92,13 @@ const Room = () => {
 
  return (
     <div className="h-screen bg-slate-950 text-white flex flex-col overflow-hidden">
-      {/* 1. Global Navigation Bar Component */}
+     
       <Navbar />
 
-      {/* 2. Fixed Dashboard Area */}
+   
       <div className="p-6 max-w-7xl w-full mx-auto grid grid-cols-4 gap-6 flex-1 h-[calc(100vh-73px)] overflow-hidden">
         
-        {/* Left Side: Video Window Block */}
+        
         <div className="col-span-3 flex flex-col gap-4 h-full overflow-y-auto pr-1">
           <VideoPlayer roomId={roomId} videoId={videoId} isPlaying={isPlaying} role={myRole} />
           
@@ -119,15 +119,15 @@ const Room = () => {
           )}
         </div>
 
-        {/* Right Side: Strict Grid (No Overlap, No Override) */}
+       
         <div className="col-span-1 grid grid-rows-[130px_1fr] gap-3 h-full overflow-hidden">
           
-          {/* Active Members: Strictly fixed at 130px height */}
+        
           <div className="overflow-hidden h-full">
             <ParticipantList roomId={roomId} />
           </div>
           
-          {/* Chatbox: Strictly takes remaining 1fr (Full Remaining Space) */}
+          
           <div className="overflow-hidden h-full">
             <ChatBox roomId={roomId} />
           </div>

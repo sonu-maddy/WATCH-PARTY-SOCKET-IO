@@ -24,7 +24,7 @@ const io = new Server(server, {
   }
 });
 
-// Database Connection
+
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:21017/watchparty';
 mongoose.connect(MONGO_URI)
   .then(() => console.log('MongoDB Connected Successfully!'))
@@ -32,7 +32,7 @@ mongoose.connect(MONGO_URI)
 
 // HTTP Base Route
 app.get('/', (req, res) => {
-  res.json({ success: true, message: 'Watch Party Robust Backend Running' });
+  res.json({ success: true, message: 'Watch Party Backend Running' });
 });
 
 io.on('connection', (socket) => {
